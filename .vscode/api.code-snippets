@@ -1,0 +1,81 @@
+{
+  "generates an entity": {
+    "prefix": "entity",
+    "body": [
+      "import { Entity, Column } from \"typeorm\";",
+      "",
+      "import { CoreEntity } from \"@preterer/typeorm-extensions\";",
+      "",
+      "import { Tables } from \"../enums/tables\";",
+      "",
+      "/**",
+      " * $1 entity",
+      " *",
+      " * @export",
+      " * @class $1",
+      " * @extends {CoreEntity}",
+      " */",
+      "@Entity({ name: Tables.$2 })",
+      "export class $1 extends CoreEntity {}",
+      ""
+    ],
+    "description": "generates an entity"
+  },
+  "generates a repository": {
+    "prefix": "repository",
+    "body": [
+      "import { EntityRepository } from \"typeorm\";",
+      "",
+      "import { CoreRepository } from \"@preterer/typeorm-extensions\";",
+      "",
+      "import { $1 } from \"../entities/$2.entity\";",
+      "",
+      "/**",
+      " * Repository of $2s",
+      " *",
+      " * @export",
+      " * @class $1Repository",
+      " * @extends {CoreRepository<$1>}",
+      " */",
+      "@EntityRepository($1)",
+      "export class $1Repository extends CoreRepository<$1> {}",
+      ""
+    ],
+    "description": "generates a repository"
+  },
+  "generates a service": {
+    "prefix": "service",
+    "body": [
+      "import { DeepPartial } from \"typeorm\";",
+      "import { InjectRepository } from \"typeorm-typedi-extensions\";",
+      "import { Service } from \"typedi\";",
+      "",
+      "import { EntityService } from \"@preterer/typeorm-extensions\";",
+      "",
+      "import { $1 } from \"../entities/$2.entity\";",
+      "import { $1Repository } from \"../repositories/$2.repository\";",
+      "",
+      "/**",
+      " * Service of $2s",
+      " *",
+      " * @export",
+      " * @class $1Service",
+      " * @extends {EntityService<$1, DeepPartial<$1>>}",
+      " */",
+      "@Service()",
+      "export class $1Service extends EntityService<$1, DeepPartial<$1>> {",
+      "  /**",
+      "   * Repository of $2s",
+      "   *",
+      "   * @protected",
+      "   * @type {$1Repository}",
+      "   * @memberof $1Service",
+      "   */",
+      "  @InjectRepository($1)",
+      "  protected repository: $1Repository;",
+      "}",
+      ""
+    ],
+    "description": "generates a service"
+  }
+}

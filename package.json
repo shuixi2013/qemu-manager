@@ -1,27 +1,41 @@
 {
-  "name": "template",
+  "name": "qemu-manager",
   "version": "1.0.0",
-  "description": "Szablon aplikacji",
+  "description": "Qemu Manager",
   "main": "dist/index.js",
+  "bin": {
+    "qemu-manager": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc --declaration",
+    "watch": "tsc --watch",
     "test": "jest --coverage",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "run": "npm run build && node ./dist/index.js add test"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/preterer/template.git"
+    "url": "git+ssh://git@github.com/preterer/qemu-manager.git"
   },
   "keywords": [
-    "template"
+    "qemu",
+    "qemu-manager",
+    "manager"
   ],
   "author": "Michał Baranowski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/preterer/template/issues"
+    "url": "https://github.com/preterer/qemu-manager/issues"
   },
-  "homepage": "https://github.com/preterer/template#readme",
-  "dependencies": {},
+  "homepage": "https://github.com/preterer/qemu-manager#readme",
+  "dependencies": {
+    "@preterer/typeorm-extensions": "1.0.1",
+    "commander": "^4.1.1",
+    "promisify": "0.0.3",
+    "sql.js": "0.5.0",
+    "sqlite3": "^4.1.1",
+    "typedi": "^0.8.0"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^12.12.14",
@@ -29,6 +43,6 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "3.7.5"
   }
 }

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2016",
-    "module": "commonjs",
+    "target": "ES6",
+    "module": "CommonJS",
     "lib": ["es2016", "esnext.asynciterable"],
+    "types": ["node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
